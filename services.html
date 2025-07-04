@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Learn With KASTRO - Jenkins Docker Kubernetes Training</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,9 +13,13 @@
       background-color: #f9f9f9;
     }
     .navbar {
-      background-color: #0f172a;
-      color: #fff;
-      padding: 15px 0;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
     }
     .nav-container {
       display: flex;
@@ -27,34 +31,72 @@
     }
     .nav-logo h2 {
       margin: 0;
-      color: #38bdf8;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
     .nav-menu {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 2rem;
     }
     .nav-item .nav-link {
       text-decoration: none;
       color: white;
       font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
     }
+    .nav-link:hover,
     .nav-link.active {
-      border-bottom: 2px solid #38bdf8;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
     .page-header {
-      background-color: #1e293b;
-      color: white;
-      padding: 40px 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      color: #1e293b;
+      padding: 140px 20px 80px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,10L50,30L70,10" fill="none" stroke="%232563eb" stroke-width="0.5"/></svg>');
+      opacity: 0.05;
+    }
+    .page-header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .page-header p {
+      font-size: 1.5rem;
+      color: #64748b;
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .services-content {
-      padding: 40px 20px;
+      padding: 60px 20px;
     }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
+      max-width: 1200px;
+      margin: auto;
     }
     .service-card {
       background-color: white;
@@ -78,21 +120,19 @@
       margin-top: 0;
       color: #0f172a;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      background-color: #0ea5e9;
-      color: white;
-      padding: 10px 16px;
-      text-decoration: none;
-      border-radius: 5px;
+    .service-content ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
     }
     .footer {
-      background-color: #0f172a;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       color: white;
-      padding: 20px 0;
+      padding: 3rem 0;
       text-align: center;
-      margin-top: 40px;
+    }
+    .footer p {
+      font-size: 1.1rem;
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -100,12 +140,12 @@
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <h2>TechSolutions Pro</h2>
+        <h2><i class="fas fa-laptop-code"></i> Learn With KASTRO</h2>
       </div>
       <ul class="nav-menu">
         <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="/services" class="nav-link active">Services</a></li>
+        <li class="nav-item"><a href="/modules" class="nav-link active">Modules</a></li>
         <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
       </ul>
     </div>
@@ -113,98 +153,88 @@
 
   <section class="page-header">
     <div class="container">
-      <h1>Our Training & DevOps Services</h1>
+      <h1>Our Training & DevOps Modules</h1>
       <p>Empower your tech journey with expert-led solutions and hands-on training</p>
     </div>
   </section>
 
   <section class="services-content">
-    <div class="container">
-      <div class="services-grid">
-
-        <div class="service-card">
-          <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Jenkins">
-          <div class="service-content">
-            <h3>Jenkins Automation</h3>
-            <p>Master CI/CD with Jenkins for seamless automation and deployment workflows.</p>
-            <ul>
-              <li>Jenkins Pipelines</li>
-              <li>Blue/Green Deployments</li>
-              <li>Integrations with Docker, GitHub</li>
-              <li>Job DSL and Plugins</li>
-            </ul>
-            
-          </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://miro.medium.com/v2/resize:fit:1400/1*ZwsY_iyPNO4zA5Ta_Cv0cA.png" alt="Jenkins">
+        <div class="service-content">
+          <h3>Jenkins Automation</h3>
+          <p>Master CI/CD with Jenkins for seamless automation and deployment workflows.</p>
+          <ul>
+            <li>Jenkins Pipelines</li>
+            <li>Blue/Green Deployments</li>
+            <li>Integrations with Docker, GitHub</li>
+            <li>Job DSL and Plugins</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="service-card">
-          <img src="https://images.pexels.com/photos/5474295/pexels-photo-5474295.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Docker">
-          <div class="service-content">
-            <h3>Docker Containerization</h3>
-            <p>Build, deploy, and manage containerized applications efficiently.</p>
-            <ul>
-              <li>Dockerfile Creation</li>
-              <li>Docker Compose</li>
-              <li>Image Optimization</li>
-              <li>Private Registry Setup</li>
-            </ul>
-            
-          </div>
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/5474295/pexels-photo-5474295.jpeg" alt="Docker">
+        <div class="service-content">
+          <h3>Docker Containerization</h3>
+          <p>Build, deploy, and manage containerized applications efficiently.</p>
+          <ul>
+            <li>Dockerfile Creation</li>
+            <li>Docker Compose</li>
+            <li>Image Optimization</li>
+            <li>Private Registry Setup</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="service-card">
-          <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Kubernetes">
-          <div class="service-content">
-            <h3>Kubernetes Orchestration</h3>
-            <p>Automate container deployment, scaling, and management using Kubernetes.</p>
-            <ul>
-              <li>Cluster Setup & Management</li>
-              <li>Liveness & Readiness Probes</li>
-              <li>ConfigMaps & Secrets</li>
-              <li>Volumes and StatefulSets</li>
-            </ul>
-            
-          </div>
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg" alt="Kubernetes">
+        <div class="service-content">
+          <h3>Kubernetes Orchestration</h3>
+          <p>Automate container deployment, scaling, and management using Kubernetes.</p>
+          <ul>
+            <li>Cluster Setup & Management</li>
+            <li>Liveness & Readiness Probes</li>
+            <li>ConfigMaps & Secrets</li>
+            <li>Volumes and StatefulSets</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="service-card">
-          <img src="https://images.pexels.com/photos/8370784/pexels-photo-8370784.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Argo CD">
-          <div class="service-content">
-            <h3>GitOps with Argo CD</h3>
-            <p>Implement GitOps workflows for Kubernetes with Argo CD for safe, declarative deployment.</p>
-            <ul>
-              <li>App Synchronization</li>
-              <li>Declarative Deployments</li>
-              <li>Health Checks & Rollbacks</li>
-              <li>Multi-Cluster Management</li>
-            </ul>
-            
-          </div>
+      <div class="service-card">
+        <img src="https://congdonglinux.com/wp-content/uploads/2024/08/argocd-logo-720x556.webp" alt="Argo CD">
+        <div class="service-content">
+          <h3>GitOps with Argo CD</h3>
+          <p>Implement GitOps workflows for Kubernetes with Argo CD for safe, declarative deployment.</p>
+          <ul>
+            <li>App Synchronization</li>
+            <li>Declarative Deployments</li>
+            <li>Health Checks & Rollbacks</li>
+            <li>Multi-Cluster Management</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="service-card">
-          <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Shell Scripting">
-          <div class="service-content">
-            <h3>FREE Shell Scripting Course</h3>
-            <p>Learn Linux Shell Scripting from scratch — automate like a pro!</p>
-            <ul>
-              <li>Bash Basics to Advanced</li>
-              <li>Script Writing & Debugging</li>
-              <li>Crontab & Scheduling</li>
-              <li>File & Process Management</li>
-            </ul>
-            
-          </div>
+      <div class="service-card">
+        <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg" alt="Shell Scripting">
+        <div class="service-content">
+          <h3>FREE Shell Scripting Course</h3>
+          <p>Learn Linux Shell Scripting from scratch — automate like a pro!</p>
+          <ul>
+            <li>Bash Basics to Advanced</li>
+            <li>Script Writing & Debugging</li>
+            <li>Crontab & Scheduling</li>
+            <li>File & Process Management</li>
+          </ul>
         </div>
-
-
       </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 TechSolutions Pro. All rights reserved.</p>
+      <p>&copy; 2025 Learn With KASTRO. All rights reserved.</p>
     </div>
   </footer>
 </body>
